@@ -1,7 +1,35 @@
 {
-  "name": "@uniswap/info",
+  "name": "@valueswap/info",
   "private": true,
-  "homepage": "https://info.uniswap.org",
+  "version": "1.0.0",
+  "author": {
+    "name": "Value Network",
+    "email": "email@site.name",
+    "url": "https://github.com/valuenetworklive2021"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valuenetworklive2021/valueswap-info"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "@popperjs/core": "^2.4.2",
     "@reach/portal": "^0.10.3",
@@ -13,7 +41,6 @@
     "@types/styled-components": "^5.1.0",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
-    "@uniswap/token-lists": "^1.0.0-beta.15",
     "ajv": "^6.12.4",
     "animated-number-react": "^0.1.1",
     "apollo-cache-inmemory": "^1.6.3",
@@ -69,24 +96,5 @@
     "typescript": "^3.9.5",
     "unstated": "^2.1.1",
     "wcag-contrast": "^3.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "license": "GPL-3.0-or-later"
+  }
 }
