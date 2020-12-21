@@ -1,0 +1,50 @@
+{
+  "name": "@valueswap/token-lists",
+  "version": "1.0.0",
+  "description": "📚 The Token Lists specification",
+  "author": {
+    "name": "Value Network",
+    "email": "email@site.name",
+    "url": "https://github.com/valuenetworklive2021"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valuenetworklive2021/valueswap-token-lists"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepublishOnly": "tsdx test && tsdx build"
+  },
+  "main": "dist/index.js",
+  "module": "dist/token-lists.esm.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "typings": "dist/index.d.ts",
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "devDependencies": {
+    "ajv": "^6.12.2",
+    "husky": "^4.2.5",
+    "tsdx": "^0.14.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
+  }
+}

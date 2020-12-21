@@ -10,7 +10,7 @@
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/valuenetworklive2021/valueswap-info"
+    "url": "https://valuenetworklive2021.github.io/valueswap-info"
   },
   "scripts": {
     "start": "react-scripts start",

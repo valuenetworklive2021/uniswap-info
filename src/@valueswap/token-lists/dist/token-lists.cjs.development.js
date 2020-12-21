@@ -1,7 +1,11 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var $schema = "http://json-schema.org/draft-07/schema#";
 var $id = "https://valuenetworklive2021.github.io/valueswap-protocol/tokenlist.schema.json";
-var title = "Uniswap Token List";
-var description = "Schema for lists of tokens compatible with the Uniswap Interface";
+var title = "Valueswap Token List";
+var description = "Schema for lists of tokens compatible with the Valueswap Interface";
 var definitions = {
 	Version: {
 		type: "object",
@@ -58,6 +62,45 @@ var definitions = {
 		examples: [
 			"compound",
 			"stablecoin"
+		]
+	},
+	ExtensionIdentifier: {
+		type: "string",
+		description: "The name of a token extension property",
+		minLength: 1,
+		maxLength: 30,
+		pattern: "^[\\w]+$",
+		examples: [
+			"color",
+			"is_fee_on_transfer",
+			"aliases"
+		]
+	},
+	ExtensionValue: {
+		anyOf: [
+			{
+				type: "string",
+				minLength: 1,
+				maxLength: 30,
+				examples: [
+					"#00000"
+				]
+			},
+			{
+				type: "boolean",
+				examples: [
+					true
+				]
+			},
+			{
+				type: "number",
+				examples: [
+					15
+				]
+			},
+			{
+				type: "null"
+			}
 		]
 	},
 	TagDefinition: {
@@ -127,7 +170,7 @@ var definitions = {
 				description: "The name of the token",
 				minLength: 1,
 				maxLength: 40,
-				pattern: "^[ \\w.'+\\-%/]+$",
+				pattern: "^[ \\w.'+\\-%/À-ÖØ-öø-ÿ\\:]+$",
 				examples: [
 					"USD Coin"
 				]
@@ -135,7 +178,7 @@ var definitions = {
 			symbol: {
 				type: "string",
 				description: "The symbol for the token; must be alphanumeric",
-				pattern: "^[a-zA-Z0-9+\\-%/]+$",
+				pattern: "^[a-zA-Z0-9+\\-%/\\$]+$",
 				minLength: 1,
 				maxLength: 20,
 				examples: [
@@ -160,6 +203,23 @@ var definitions = {
 				examples: [
 					"stablecoin",
 					"compound"
+				]
+			},
+			extensions: {
+				type: "object",
+				description: "An object containing any arbitrary or vendor-specific token metadata",
+				propertyNames: {
+					$ref: "#/definitions/ExtensionIdentifier"
+				},
+				additionalProperties: {
+					$ref: "#/definitions/ExtensionValue"
+				},
+				maxProperties: 10,
+				examples: [
+					{
+						color: "#000000",
+						is_verified_by_me: true
+					}
 				]
 			}
 		},
@@ -200,7 +260,7 @@ var properties = {
 			$ref: "#/definitions/TokenInfo"
 		},
 		minItems: 1,
-		maxItems: 1000
+		maxItems: 10000
 	},
 	keywords: {
 		type: "array",
@@ -298,14 +358,12 @@ function isVersionUpdate(base, update) {
   return versionComparator(base, update) < 0;
 }
 
-var VersionUpgrade;
-
 (function (VersionUpgrade) {
   VersionUpgrade[VersionUpgrade["NONE"] = 0] = "NONE";
   VersionUpgrade[VersionUpgrade["PATCH"] = 1] = "PATCH";
   VersionUpgrade[VersionUpgrade["MINOR"] = 2] = "MINOR";
   VersionUpgrade[VersionUpgrade["MAJOR"] = 3] = "MAJOR";
-})(VersionUpgrade || (VersionUpgrade = {}));
+})(exports.VersionUpgrade || (exports.VersionUpgrade = {}));
 /**
  * Return the upgrade type from the base version to the update version.
  * Note that downgrades and equivalent versions are both treated as `NONE`.
@@ -316,22 +374,22 @@ var VersionUpgrade;
 
 function getVersionUpgrade(base, update) {
   if (update.major > base.major) {
-    return VersionUpgrade.MAJOR;
+    return exports.VersionUpgrade.MAJOR;
   }
 
   if (update.major < base.major) {
-    return VersionUpgrade.NONE;
+    return exports.VersionUpgrade.NONE;
   }
 
   if (update.minor > base.minor) {
-    return VersionUpgrade.MINOR;
+    return exports.VersionUpgrade.MINOR;
   }
 
   if (update.minor < base.minor) {
-    return VersionUpgrade.NONE;
+    return exports.VersionUpgrade.NONE;
   }
 
-  return update.patch > base.patch ? VersionUpgrade.PATCH : VersionUpgrade.NONE;
+  return update.patch > base.patch ? exports.VersionUpgrade.PATCH : exports.VersionUpgrade.NONE;
 }
 
 /**
@@ -368,7 +426,7 @@ function diffTokenLists(base, update) {
   var newListUpdates = update.reduce(function (memo, tokenInfo) {
     var _indexedBase$tokenInf;
 
-    var baseToken = (_indexedBase$tokenInf = indexedBase[tokenInfo.chainId]) === null || _indexedBase$tokenInf === void 0 ? void 0 : _indexedBase$tokenInf[tokenInfo.address];
+    var baseToken = (_indexedBase$tokenInf = indexedBase[tokenInfo.chainId]) == null ? void 0 : _indexedBase$tokenInf[tokenInfo.address];
 
     if (!baseToken) {
       memo.added.push(tokenInfo);
@@ -424,10 +482,10 @@ function diffTokenLists(base, update) {
 
 function minVersionBump(baseList, updatedList) {
   var diff = diffTokenLists(baseList, updatedList);
-  if (diff.removed.length > 0) return VersionUpgrade.MAJOR;
-  if (diff.added.length > 0) return VersionUpgrade.MINOR;
-  if (Object.keys(diff.changed).length > 0) return VersionUpgrade.PATCH;
-  return VersionUpgrade.NONE;
+  if (diff.removed.length > 0) return exports.VersionUpgrade.MAJOR;
+  if (diff.added.length > 0) return exports.VersionUpgrade.MINOR;
+  if (Object.keys(diff.changed).length > 0) return exports.VersionUpgrade.PATCH;
+  return exports.VersionUpgrade.NONE;
 }
 
 /**
@@ -438,24 +496,24 @@ function minVersionBump(baseList, updatedList) {
 
 function nextVersion(base, bump) {
   switch (bump) {
-    case VersionUpgrade.NONE:
+    case exports.VersionUpgrade.NONE:
       return base;
 
-    case VersionUpgrade.MAJOR:
+    case exports.VersionUpgrade.MAJOR:
       return {
         major: base.major + 1,
         minor: 0,
         patch: 0
       };
 
-    case VersionUpgrade.MINOR:
+    case exports.VersionUpgrade.MINOR:
       return {
         major: base.major,
         minor: base.minor + 1,
         patch: 0
       };
 
-    case VersionUpgrade.PATCH:
+    case exports.VersionUpgrade.PATCH:
       return {
         major: base.major,
         minor: base.minor,
@@ -464,5 +522,11 @@ function nextVersion(base, bump) {
   }
 }
 
-export { VersionUpgrade, diffTokenLists, getVersionUpgrade, isVersionUpdate, minVersionBump, nextVersion, tokenlist_schema as schema, versionComparator };
-//# sourceMappingURL=token-lists.esm.js.map
+exports.diffTokenLists = diffTokenLists;
+exports.getVersionUpgrade = getVersionUpgrade;
+exports.isVersionUpdate = isVersionUpdate;
+exports.minVersionBump = minVersionBump;
+exports.nextVersion = nextVersion;
+exports.schema = tokenlist_schema;
+exports.versionComparator = versionComparator;
+//# sourceMappingURL=token-lists.cjs.development.js.map
