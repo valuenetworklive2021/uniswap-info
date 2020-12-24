@@ -1993,6 +1993,11 @@
     "@typescript-eslint/types" "4.4.0"
     eslint-visitor-keys "^2.0.0"
 
+"@valueswap/token-lists@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@valueswap/token-lists/-/token-lists-1.0.0.tgz#36e65c6f7ffa9851495f289b902cfe92ff316d54"
+  integrity sha512-K6sMHDnQbnE1Dej2YcW63FAvB0Nkt5ly9JlaX9GU3QwYfq3PcVii6DTTMaZiQa9ffeD/BsEqDx+RaefzPj0bNQ==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
