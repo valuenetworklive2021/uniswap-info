@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var $schema = "http://json-schema.org/draft-07/schema#";
-var $id = "https://valuenetworklive2021.github.io/valueswap-protocol/tokenlist.schema.json";
+var $id = "https://valueswap.valuenetwork.live/tokenlist.schema.json";
 var title = "Valueswap Token List";
 var description = "Schema for lists of tokens compatible with the Valueswap Interface";
 var definitions = {

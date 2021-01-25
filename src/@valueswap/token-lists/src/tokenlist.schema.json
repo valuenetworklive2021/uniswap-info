@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://valuenetworklive2021.github.io/valueswap-protocol/tokenlist.schema.json",
+  "$id": "https://valueswap.valuenetwork.live/tokenlist.schema.json",
   "title": "Valueswap Token List",
   "description": "Schema for lists of tokens compatible with the Valueswap Interface",
   "definitions": {

@@ -1,6 +1,6 @@
 # Valueswap Info
 
-Analytics site for the [Valueswap Protocol](https://valuenetworklive2021.github.io/valueswap-protocol).
+Analytics site for the [Valueswap Protocol](https://valueswap.valuenetwork.live).
 
 ### To Start Development
 

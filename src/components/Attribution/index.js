@@ -2,11 +2,11 @@ import React from 'react'
 
 const Attribution = () => (
   <p className="attribution">
-    <a href="https://valuenetworklive2021.github.io/valueswap-info" rel="noopener noreferrer" target="_blank">
+    <a href="https://github.com/valuenetworklive2021/valueswap-info" rel="noopener noreferrer" target="_blank">
       Github
     </a>{' '}
     |{' '}
-    <a href="https://valuenetworklive2021.github.io/valueswap-protocol" rel="noopener noreferrer" target="_blank">
+    <a href="https://valueswap.valuenetwork.live" rel="noopener noreferrer" target="_blank">
       Valueswap
     </a>{' '}
     |{' '}

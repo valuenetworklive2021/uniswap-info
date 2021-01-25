@@ -19,7 +19,7 @@ Tokens on token lists, and token lists themselves, are tagged so that users can 
 
 ## JSON Schema $id
 
-The JSON schema ID is [https://valuenetworklive2021.github.io/valueswap-protocol/tokenlist.schema.json](https://valuenetworklive2021.github.io/valueswap-protocol/tokenlist.schema.json)
+The JSON schema ID is [https://valueswap.valuenetwork.live/tokenlist.schema.json](https://valueswap.valuenetwork.live/tokenlist.schema.json)
 
 ## Validating token lists
 
